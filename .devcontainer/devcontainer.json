@@ -1,50 +1,19 @@
 {
-  "name": "Windows 7 in QEMU with Docker-in-Docker",
-  "build": {
-    "dockerfile": "Dockerfile"
+  "name": "Windows 10 Pro",
+  "service": "windows",
+  "containerEnv": {
+    "VERSION": "10"
   },
-
-  "initializeCommand": "bash .devcontainer/initializeCommand.sh",
-  "onCreateCommand": "bash .devcontainer/onCreateCommand.sh",
-  "postStartCommand": "bash .devcontainer/postStartCommand.sh",
-  "postAttachCommand": "bash .devcontainer/postAttachCommand.sh",
-
-  "forwardPorts": [8006, 5900, 3389],
-
+  "forwardPorts": [8006],
   "portsAttributes": {
     "8006": {
-      "label": "Web Interface",
-      "onAutoForward": "openBrowser"
-    },
-    "5900": {
-      "label": "VNC",
-      "onAutoForward": "notify"
-    },
-    "3389": {
-      "label": "RDP",
+      "label": "Web",
       "onAutoForward": "notify"
     }
   },
-
-  "customizations": {
-    "vscode": {
-      "extensions": ["ms-vscode-remote.remote-containers"],
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
-      }
-    }
+  "otherPortsAttributes": {
+    "onAutoForward": "ignore"
   },
-
-  "runArgs": [
-    "--privileged",
-    "--cap-add=ALL",
-    "--security-opt",
-    "seccomp=unconfined",
-    "--device=/dev/kvm",
-    "--device=/dev/net/tun"
-  ],
-
-  "mounts": [
-    "source=${localWorkspaceFolder}/iso,target=/workspaces/docker-windows/iso,type=bind"
-  ]
+  "dockerComposeFile": "codespaces.yml",
+  "initializeCommand": "docker system prune --all --force"
 }
