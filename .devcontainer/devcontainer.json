@@ -1,9 +1,13 @@
 {
   "name": "Windows 11 Pro",
   "service": "windows",
+
   "containerEnv": {
-    "VERSION": "11"
+    "VERSION": "11",
+    "RAM_SIZE": "8G",
+    "CPU_CORES": "4"
   },
+
   "forwardPorts": [8006],
   "portsAttributes": {
     "8006": {
