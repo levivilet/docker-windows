@@ -1,0 +1,23 @@
+#!/bin/bash
+clear
+
+echo "═══════════════════════════════════════════════════════"
+echo "  Windows 7 QEMU Environment"
+echo "═══════════════════════════════════════════════════════"
+echo ""
+echo "📝 Available commands:"
+echo "  start   - Start Windows VM"
+echo "  stop    - Stop Windows VM"
+echo "  restart - Restart Windows VM"
+echo "  kill    - Force stop Windows VM"
+echo "  remove  - Remove Windows VM container"
+echo "  logs    - View Windows VM logs"
+echo ""
+echo "🌐 Access points:"
+echo "  Web UI:  http://localhost:8006"
+echo "  VNC:     localhost:5900"
+echo "  RDP:     localhost:3389"
+echo ""
+echo "📁 Place your Windows 7 ISO in: ./iso/windows7.iso"
+echo ""
+echo "═══════════════════════════════════════════════════════"
