@@ -1,0 +1,31 @@
+name: Test DevContainer
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build and run devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          # Build the devcontainer
+          runCmd: |
+            echo "Testing devcontainer build..."
+            # Verify basic tools are available
+            which bash
+            echo "User: $(whoami)"
+            echo "Display: $DISPLAY"
+            # Check if VNC-related packages are installed
+            which vncserver || echo "vncserver not in PATH"
+            which Xvnc || echo "Xvnc not in PATH"
+            # Verify we're in the right environment
+            echo "DevContainer build successful!"
