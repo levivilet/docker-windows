@@ -29,6 +29,7 @@ mkdir -p iso
 ```
 
 **Where to get Windows 7 ISO:**
+
 - Internet Archive has archived Windows 7 ISOs (search for "Windows 7 ISO")
 - Microsoft's Software Recovery page (requires product key)
 - Your organization's volume licensing portal
@@ -48,6 +49,7 @@ start
 ```
 
 This will:
+
 - Pull the `dockurr/windows` Docker image
 - Start QEMU with your Windows 7 ISO
 - Set up VNC and web access
@@ -72,14 +74,14 @@ Once Windows is installed and RDP is enabled: **localhost:3389**
 
 ## Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `start` | Start the Windows VM |
-| `stop` | Stop the Windows VM gracefully |
-| `restart` | Restart the Windows VM |
-| `kill` | Force stop the Windows VM |
-| `remove` | Remove the Windows VM container |
-| `logs` | View Windows VM logs |
+| Command   | Description                     |
+| --------- | ------------------------------- |
+| `start`   | Start the Windows VM            |
+| `stop`    | Stop the Windows VM gracefully  |
+| `restart` | Restart the Windows VM          |
+| `kill`    | Force stop the Windows VM       |
+| `remove`  | Remove the Windows VM container |
+| `logs`    | View Windows VM logs            |
 
 ## Configuration
 
@@ -97,10 +99,10 @@ Edit [`windows/windows.yaml`](windows/windows.yaml) to change:
 
 ```yaml
 environment:
-  VERSION: "http://127.0.0.1:8000/windows7.iso"  # ISO location
-  CPU_CORES: 4                                     # Number of CPU cores
-  RAM_SIZE: 8G                                     # RAM allocation
-  DISK_SIZE: 64G                                   # Disk size
+  VERSION: "http://127.0.0.1:8000/windows7.iso" # ISO location
+  CPU_CORES: 4 # Number of CPU cores
+  RAM_SIZE: 8G # RAM allocation
+  DISK_SIZE: 64G # Disk size
 ```
 
 ## Using Different Windows Versions
@@ -161,6 +163,7 @@ This shows the QEMU output and any errors.
 ## License
 
 See [LICENSE](LICENSE)
+
 - **Ports**: 5901 (VNC), 6080 (noVNC web)
 
 ## Stopping VNC
