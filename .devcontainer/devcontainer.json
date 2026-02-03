@@ -1,8 +1,8 @@
 {
-  "name": "Windows 10 Pro",
+  "name": "Windows 11 Pro",
   "service": "windows",
   "containerEnv": {
-    "VERSION": "10"
+    "VERSION": "11"
   },
   "forwardPorts": [8006],
   "portsAttributes": {
