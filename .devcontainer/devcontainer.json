@@ -1,28 +1,29 @@
 {
-  "name": "XFCE Desktop with VNC",
+  "name": "Windows 7 in QEMU with Docker-in-Docker",
   "build": {
     "dockerfile": "Dockerfile"
   },
 
-  "postStartCommand": "nohup bash .devcontainer/start-vnc.sh > /tmp/vnc.log 2>&1 &",
+  "initializeCommand": "bash .devcontainer/initializeCommand.sh",
+  "onCreateCommand": "bash .devcontainer/onCreateCommand.sh",
+  "postStartCommand": "bash .devcontainer/postStartCommand.sh",
+  "postAttachCommand": "bash .devcontainer/postAttachCommand.sh",
 
-  "forwardPorts": [5901, 6080],
+  "forwardPorts": [8006, 5900, 3389],
 
   "portsAttributes": {
-    "5901": {
+    "8006": {
+      "label": "Web Interface",
+      "onAutoForward": "openBrowser"
+    },
+    "5900": {
       "label": "VNC",
       "onAutoForward": "notify"
     },
-    "6080": {
-      "label": "noVNC (Web)",
-      "onAutoForward": "openBrowser"
+    "3389": {
+      "label": "RDP",
+      "onAutoForward": "notify"
     }
-  },
-
-  "remoteUser": "vscode",
-
-  "containerEnv": {
-    "DISPLAY": ":1"
   },
 
   "customizations": {
@@ -34,9 +35,16 @@
     }
   },
 
-  "runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
+  "runArgs": [
+    "--privileged",
+    "--cap-add=ALL",
+    "--security-opt",
+    "seccomp=unconfined",
+    "--device=/dev/kvm",
+    "--device=/dev/net/tun"
+  ],
 
   "mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    "source=${localWorkspaceFolder}/iso,target=/workspaces/docker-windows/iso,type=bind"
   ]
 }
